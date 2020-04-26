@@ -31,7 +31,7 @@ public class Homefournisseur extends Form{
 accueilf.getToolbar().addSearchCommand(e -> {
 });
  add(new Label("les Fournisseurs"));
-        add(new Label("les Fournisseurs"));
+       
         accueilf.add(new InfiniteProgress());
         getToolbar().addMaterialCommandToRightBar(
                    "", FontImage.MATERIAL_ADD, 6f,( ActionEvent e) -> {
