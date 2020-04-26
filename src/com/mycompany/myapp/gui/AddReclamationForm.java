@@ -15,9 +15,6 @@ import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.mycompany.entities.Reclamation;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 
 /**
  *
@@ -43,9 +40,10 @@ public class AddReclamationForm  extends Form{
                 else
                 {
                      try {
-                         Reclamation t =new Reclamation(Boolean.parseBoolean(tfEtat.getText()),tfDesignation.getText(),tfDesignation.getText(),date);
+                        Reclamation t =new Reclamation(Boolean.parseBoolean(tfEtat.getText()),tfDesignation.getText(),tfDesignation.getText(),date);
                      }
-                        //Reclamation t = new Reclamation(Integer.parseInt(tfEtat.getText()),tfDesignation.getText(),tfDesignation.getText(), tfDate.getText());
+                        
+                        
                  
                      catch (NumberFormatException e) {
                         Dialog.show("ERROR", "Status must be a number", new Command("OK"));
@@ -57,5 +55,7 @@ public class AddReclamationForm  extends Form{
         getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e->previous.showBack());
    }
     
-    
+            }
+
+} }
 }
