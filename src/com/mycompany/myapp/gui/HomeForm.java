@@ -6,6 +6,7 @@
 package com.mycompany.myapp.gui;
 
 import com.codename1.ui.Button;
+import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
 import com.codename1.ui.layouts.BoxLayout;
@@ -16,7 +17,7 @@ import com.codename1.ui.layouts.BoxLayout;
  */
 public class HomeForm extends Form {
     Form current;
-    public HomeForm() {
+    public HomeForm(Form previous) {
         current=this;
         setTitle("Home");
         setLayout(BoxLayout.y());
@@ -28,4 +29,7 @@ public class HomeForm extends Form {
         btnAddReclamation.addActionListener(e->new AddReclamationForm(current).show());
         btnListReclamation.addActionListener(e-> new ListReclamationForm(current).show());
         addAll(btnAddReclamation,btnListReclamation);
-} }
+                  getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e->previous.showBack());
+
+}
+}
