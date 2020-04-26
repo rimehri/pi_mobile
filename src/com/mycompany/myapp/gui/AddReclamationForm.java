@@ -10,6 +10,10 @@ import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.TextField;
 import com.codename1.ui.layouts.BoxLayout;
+<<<<<<< HEAD
+=======
+import com.mycompany.entities.Reclamation;
+>>>>>>> 0153cb9b04c8a4b7a3aae5646ccb8353a02564d7
 
 /**
  *
@@ -35,16 +39,25 @@ public class AddReclamationForm  extends Form{
                 else
                 {
                      try {
+<<<<<<< HEAD
 //                       //  Reclamation t =new Reclamation(Boolean.parseBoolean(tfEtat.getText()),tfDesignation.getText(),tfDesignation.getText(),date);
                      
                        //Reclamation t = new Reclamation(Integer.parseInt(tfEtat.getText()),tfDesignation.getText(),tfDesignation.getText(), tfDate.getText());
                      }
+=======
+                        Reclamation t =new Reclamation(Boolean.parseBoolean(tfEtat.getText()),tfDesignation.getText(),tfDesignation.getText(),date);
+                     }
+                        
+                        
+                 
+>>>>>>> 0153cb9b04c8a4b7a3aae5646ccb8353a02564d7
                      catch (NumberFormatException e) {
                         Dialog.show("ERROR", "Status must be a number", new Command("OK"));
             }
                 
 
         
+<<<<<<< HEAD
                 
                 }}*/
            
@@ -52,3 +65,15 @@ public class AddReclamationForm  extends Form{
    
         getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e->previous.showBack());
    }}
+=======
+        
+        
+        
+        getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e->previous.showBack());
+   }
+    
+            }
+
+} }
+}
+>>>>>>> 0153cb9b04c8a4b7a3aae5646ccb8353a02564d7
