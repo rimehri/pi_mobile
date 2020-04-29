@@ -10,6 +10,8 @@ package com.mycompany.entities;
  * @author ASUS
  */
 public class produit {
+    
+    
     private int idp;
     private float prix ;
     private String nom;
