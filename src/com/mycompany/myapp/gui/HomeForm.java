@@ -25,7 +25,6 @@ public class HomeForm extends Form {
         add(new Label("Choose an option"));
         Button btnAddReclamation = new Button("Add Reclamation");
         Button btnListReclamation = new Button("List Reclamation");
-        
         btnAddReclamation.addActionListener(e->new AddReclamationForm(current).show());
         btnListReclamation.addActionListener(e-> new ListReclamationForm(current).show());
         addAll(btnAddReclamation,btnListReclamation);

@@ -16,6 +16,8 @@ import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.plaf.UIManager;
+import java.io.IOException;
+
 
 /**
  *
@@ -32,10 +34,17 @@ public class accueil extends Form{
         add(new Label("Helex Stock"));
         Button reclamation = new Button("Gestion Reclamation ");
         Button fournisseur = new Button("Gestion Fournisseurs ");
+                Button Commande = new Button("Gestion Commande ");
+
         
         reclamation.addActionListener(e->new HomeForm(accueill).show());
         fournisseur.addActionListener(e-> new Homefournisseur(accueill).show());
-        addAll(reclamation,fournisseur);
+        Commande.addActionListener(e->{
+            
+                new commandefafffich(accueill).show();
+            
+        });
+        addAll(reclamation,fournisseur,Commande);
 
              
         Button btnClose = new Button("Quiter");
