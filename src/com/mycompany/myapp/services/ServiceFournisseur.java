@@ -9,7 +9,6 @@ import com.codename1.io.ConnectionRequest;
 import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
 import com.codename1.ui.events.ActionListener;
-import com.mycompany.entities.Reclamation;
 import com.mycompany.entities.societe;
 import com.mycompany.myapp.utils.Statics;
 

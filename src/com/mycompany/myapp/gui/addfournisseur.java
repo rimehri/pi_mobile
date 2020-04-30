@@ -81,7 +81,7 @@ sb.setImageToShare(imageFile, "image/png");*/
                 else
                 {
                      try {
-//                       //  Reclamation t =new Reclamation(Boolean.parseBoolean(tfEtat.getText()),tfDesignation.getText(),tfDesignation.getText(),date);
+//                       // &te);
                      
                        //Reclamation t = new Reclamation(Integer.parseInt(tfEtat.getText()),tfDesignation.getText(),tfDesignation.getText(), tfDate.getText());
                      }
