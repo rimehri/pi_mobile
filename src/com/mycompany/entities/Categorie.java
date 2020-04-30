@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.myapp.utils;
+package com.mycompany.entities;
 
 /**
  *
  * @author admin
  */
-public class Statics {
-      public static final String BASE_URL="http://localhost/final/web/app_dev.php/api";
+class Categorie {
     
 }

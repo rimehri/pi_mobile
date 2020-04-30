@@ -12,28 +12,40 @@ import java.util.Date;
  * @author admin
  */
 public class Reclamation {
-    private int id;
+
     private String designation;
     private String description;
     private boolean etat;
-   private  Date date;   
- 
+    private String date;
+    private CategorieR  categorie ; 
 
-    public Reclamation(int id, String designation, String description, boolean etat, Date date) {
-        this.id = id;
+    public Reclamation(String designation, String description, boolean etat, String date, CategorieR categorie) {
         this.designation = designation;
         this.description = description;
         this.etat = etat;
         this.date = date;
+        this.categorie = categorie;
     }
+
+    public CategorieR getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(CategorieR categorie) {
+        this.categorie = categorie;
+    }
+
+
 
     public Reclamation() {
     }
 
+    public boolean getEtat() {
+        return etat;
+    }
 
-
-    public int getId() {
-        return id;
+    public void setEtat(boolean etat) {
+        this.etat = etat;
     }
 
     public String getDesignation() {
@@ -44,18 +56,12 @@ public class Reclamation {
         return description;
     }
 
-    public boolean isEtat() {
-        return etat;
-    }
-
-   
-
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public void setDesignation(String designation) {
@@ -66,20 +72,9 @@ public class Reclamation {
         this.description = description;
     }
 
-    public void setEtat(boolean etat) {
-        this.etat = etat;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     @Override
     public String toString() {
-        return "Reclamation{" + "id=" + id + ", designation=" + designation + ", description=" + description + ", etat=" + etat + ", date=" + date + '}';
+        return "Reclamation{" + ", designation=" + designation + ", description=" + description + ", etat=" + etat + ", date=" + date + '}';
     }
-   
-   
-   
-   
+
 }

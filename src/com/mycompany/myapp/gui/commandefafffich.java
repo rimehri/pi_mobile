@@ -6,10 +6,8 @@
 package com.mycompany.myapp.gui;
 
 import com.codename1.components.SpanLabel;
-import static com.codename1.push.PushContent.setTitle;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
-import com.mycompany.myapp.services.ServiceCategorief;
 import com.mycompany.myapp.services.ServiceCommandef;
 
 /**
