@@ -5,34 +5,122 @@
  */
 package com.mycompany.myapp.services;
 
+import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;
+import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
 import com.codename1.ui.events.ActionListener;
+import com.mycompany.entities.CategorieF;
+import com.mycompany.entities.CommandeF;
+import com.mycompany.entities.produit;
 import com.mycompany.entities.societe;
 import com.mycompany.myapp.utils.Statics;
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author ASUS
  */
 public class ServiceFournisseur {
-     public boolean resultOK;
-     
-       public boolean addfournisseur(societe t) {
-        String url = Statics.BASE_URL +"/societe/" + t.getNames()+"/"+t.getAddress()+"/"+t.getEmail()+"/"+t.getTel()+"/"+t.getLogo(); // cree l'url
-          ConnectionRequest req = new ConnectionRequest(url); // créer la requete 
-         
-         req.addResponseListener(new ActionListener<NetworkEvent>() {
+   
+        public ArrayList<societe> tasks;
+    
+    public static ServiceFournisseur instance=null;
+    public boolean resultOK;
+    private ConnectionRequest req;
+
+    private ServiceFournisseur() {
+         req = new ConnectionRequest();
+    }
+
+    public static ServiceFournisseur getInstance() {
+        if (instance == null) {
+            instance = new ServiceFournisseur();
+        }
+        return instance;
+    }
+     public ArrayList<societe> parseTasks(String jsonText) throws ParseException{
+        try {
+            tasks=new ArrayList<>();
+            JSONParser j = new JSONParser();// Instanciation d'un objet JSONParser permettant le parsing du résultat json
+
+           
+            Map<String,Object> tasksListJson = j.parseJSON(new CharArrayReader(jsonText.toCharArray()));
+           
+            List<Map<String,Object>> list = (List<Map<String,Object>>)tasksListJson.get("root");
+            //Parcourir la liste des tâches Json
+            for(Map<String,Object> obj : list){
+        
+              societe t = new societe();
+             
+                float id = Float.parseFloat(obj.get("ids").toString());
+                t.setIds((int)id);
+                t.setVue(((int)Float.parseFloat(obj.get("vue").toString())));
+                         t.setNames(obj.get("names").toString());
+                            
+
+
+                   t.setAddress(obj.get("address").toString());
+                            t.setEmail(obj.get("email").toString());
+                            t.setTel(obj.get("tel").toString());
+                            t.setLogo(obj.get("logo").toString());
+                            
+                /*  Map<String, Object> produi = (Map<String, Object>) obj.get("categorie");
+                  CategorieF pk = new CategorieF();
+                   String s = obj.get("nom categorie").toString();
+                   pk.setNomC(s);
+                   
+                    CategorieF p = new CategorieF(s);
+                    
+                   
+                   t.setCategorie(p);*/
+                            //  Map<String, Object> categorie = (Map<String, Object>) obj.get("categorie");
+                           //   CategorieF c = new CategorieF();
+               // float idUsr = Float.parseFloat(user.get("id").toString());
+               // usr.setId((int)idUsr);
+            //    c.setNomC(obj.get("nomC").toString());
+              
+                
+                
+//                t.setCategorie(c);
+              
+             
+                tasks.add(t);
+            }
+            
+            
+        } catch (IOException ex) {
+            
+        }
+         /*
+            A ce niveau on a pu récupérer une liste des tâches à partir
+        de la base de données à travers un service web
+        
+        */
+        return tasks;
+    }
+    
+    public ArrayList<societe> getAllTasks(){
+        String url = "http://localhost/FINAL symfony/final/web/app_dev.php/societe";
+        req.setUrl(url);
+        req.setPost(false);
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
-                //vérifier le statut de la réponse
-                resultOK = req.getResponseCode() == 200; //Code HTTP 200 OK
-              //  req.removeResponseListener(this);
-            } 
-         });
-         NetworkManager.getInstance().addToQueueAndWait(req);
-              
-    return resultOK;
-} 
+                try {
+                    tasks = parseTasks(new String(req.getResponseData()));
+                } catch (ParseException ex) {
+                    System.out.println("error");
+                }
+                req.removeResponseListener(this);
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return tasks;
+    }
 }
