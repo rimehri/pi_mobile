@@ -45,10 +45,7 @@ public class first extends Form{
        
         page1.setUIID("Container");
         page2.setUIID("Container");
-        /*page3.setUIID("Container");
-        page4.setUIID("Container");
-        page5.setUIID("Container");
-        page6.setUIID("Container");*/
+       
         page1.getAllStyles().setBgTransparency(0);
         page2.getAllStyles().setBgTransparency(0);
      /*   page3.getAllStyles().setBgTransparency(0);
