@@ -13,11 +13,16 @@ import com.codename1.io.NetworkManager;
 import com.codename1.ui.events.ActionListener;
 import com.mycompany.entities.CommandeF;
 import com.mycompany.entities.produit;
+import com.mycompany.entities.societe;
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import static jdk.nashorn.internal.objects.ArrayBufferView.length;
+import static jdk.nashorn.internal.objects.NativeString.substring;
 
 
 /**
@@ -61,14 +66,49 @@ public class ServiceCommandef {
                 float id = Float.parseFloat(obj.get("idm").toString());
                 t.setIdm((int)id);
                 t.setQuantite(((int)Float.parseFloat(obj.get("quantite").toString())));
+                SimpleDateFormat sdf= new SimpleDateFormat("yy-MM-dd");
+                
+                
+                  Map<String, Object> prch = (Map<String, Object>) obj.get("date");
+                  Date dateStr;
+                dateStr = ((Date)sdf.parse(prch.get("date").toString()));
+               
+                
+              
+                t.setDate(dateStr);
+          /* String d=     obj.get("date").toString();
+                String substring = d.substring(11,length(d));
+                t.setDate(substring);*/
+                
            //      
                 // SimpleDateFormat sdf= new SimpleDateFormat("yy-MM-dd");
                   //  t.setDate((Date)(sdf.parse(obj.get("date").toString())));
 
-                   Map<String, Object> listmembre = (Map<String, Object>) obj.get("idp");
-                produit p = new produit();
-//             p.setNom((String) listmembre.get("nom"));
-              
+                   Map<String, Object> produi = (Map<String, Object>) obj.get("produit");
+                  
+                   String s = obj.get("NOM produit").toString();
+                   Float pr= Float.parseFloat(obj.get("prix unitaire").toString());
+                   
+                    produit p = new produit(pr,s);
+                    p.setNom(s);
+                    p.setPrix(pr);
+                   t.setProduit(p);
+                     Map<String, Object> produiti = (Map<String, Object>) obj.get("societe");
+                  
+                   String l = obj.get("nom fournisseur").toString();
+                   
+                  societe k = new societe(l);
+                    k.setNames(l);
+                   
+                   t.setSociete(k);
+                 //  p.setNom(produi.get("NOM produit").toString());
+                 //  p.setPrix(Float.parseFloat(produi.get("prix unitaire").toString()));
+                   
+                   
+//  produit u = new produit(Float.parseFloat(produit.get("prix unitaire").toString()), produit.get("NOM produit").toString());
+ // u.setNom(produit.get("NOM produit").toString());
+ // u.setPrix(Float.parseFloat(produit.get("prix unitaire").toString()));
+        //      t.setProduit(u);
               // float prix = Float.parseFloat(obj.get("prix").toString());
             //    p.setPrix(prix);
                
