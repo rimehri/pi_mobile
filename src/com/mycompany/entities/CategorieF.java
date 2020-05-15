@@ -10,7 +10,9 @@ package com.mycompany.entities;
  * @author ASUS
  */
 public class CategorieF {
-
+               
+    
+    
     public int getIdf() {
         return idf;
     }

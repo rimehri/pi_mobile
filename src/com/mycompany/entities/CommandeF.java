@@ -13,11 +13,45 @@ import java.util.Date;
  * @author ASUS
  */
 public class CommandeF {
+    
     private int idm ;
     private Date date ;
     private int quantite;
     private produit produit;
+ private societe societe;
+    public societe getSociete() {
+        return societe;
+    }
+
+    public CommandeF(int idm, Date date, int quantite, produit produit, societe societe) {
+        this.idm = idm;
+        this.date = date;
+        this.quantite = quantite;
+        this.produit = produit;
+        this.societe = societe;
+    }
+
+    public void setSociete(societe societe) {
+        this.societe = societe;
+    }
+
+    public SimpleDateFormat getFormater() {
+        return formater;
+    }
+
+    public void setFormater(SimpleDateFormat formater) {
+        this.formater = formater;
+    }
+
+    public CommandeF(Date date, int quantite, produit produit, societe societe) {
+        this.date = date;
+        this.quantite = quantite;
+        this.produit = produit;
+        this.societe = societe;
+    }
+   
  SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+ 
     public CommandeF(int idm, Date date, int quantite, produit produit) {
         this.idm = idm;
         this.date = date;
