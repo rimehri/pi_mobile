@@ -39,7 +39,7 @@ public class ServiceCommandef {
     public boolean resultOK;
     private ConnectionRequest req;
 
-    private ServiceCommandef() {
+    public ServiceCommandef() {
          req = new ConnectionRequest();
     }
 
@@ -101,18 +101,7 @@ public class ServiceCommandef {
                     k.setNames(l);
                    
                    t.setSociete(k);
-                 //  p.setNom(produi.get("NOM produit").toString());
-                 //  p.setPrix(Float.parseFloat(produi.get("prix unitaire").toString()));
-                   
-                   
-//  produit u = new produit(Float.parseFloat(produit.get("prix unitaire").toString()), produit.get("NOM produit").toString());
- // u.setNom(produit.get("NOM produit").toString());
- // u.setPrix(Float.parseFloat(produit.get("prix unitaire").toString()));
-        //      t.setProduit(u);
-              // float prix = Float.parseFloat(obj.get("prix").toString());
-            //    p.setPrix(prix);
-               
-                //Ajouter la tâche extraite de la réponse Json à la liste
+                 
                 tasks.add(t);
             }
             
@@ -120,11 +109,7 @@ public class ServiceCommandef {
         } catch (IOException ex) {
             
         }
-         /*
-            A ce niveau on a pu récupérer une liste des tâches à partir
-        de la base de données à travers un service web
         
-        */
         return tasks;
     }
     
@@ -145,5 +130,22 @@ public class ServiceCommandef {
         });
         NetworkManager.getInstance().addToQueueAndWait(req);
         return tasks;
+    }
+     public boolean addcomm(CommandeF t) {
+        String url = "http://localhost/FINAL%20symfony/final/web/app_dev.php/newcomm" + "/" + t.getQuantite(); // cree l'url
+        ConnectionRequest req = new ConnectionRequest(url); // créer la requete 
+        // ajouter une action  à la reception de la réponse
+        req.setUrl(url);
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                //vérifier le statut de la réponse
+                resultOK = req.getResponseCode() == 200; //Code HTTP 200 OK
+                //  req.removeResponseListener(this);
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req);
+
+        return resultOK;
     }
 }

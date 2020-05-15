@@ -10,6 +10,14 @@ package com.mycompany.entities;
  * @author ASUS
  */
 public class societe {
+
+    public CategorieF getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(CategorieF categorie) {
+        this.categorie = categorie;
+    }
     private int ids;
     private String names;
     private String address;
@@ -17,6 +25,17 @@ public class societe {
     private String tel;
     private String logo;
     private int vue;
+    private CategorieF categorie;
+
+    public societe(String names, String address, String email, String tel, String logo, int vue, CategorieF categorie) {
+        this.names = names;
+        this.address = address;
+        this.email = email;
+        this.tel = tel;
+        this.logo = logo;
+        this.vue = vue;
+        this.categorie = categorie;
+    }
 
     public societe() {
     }
@@ -102,6 +121,10 @@ public class societe {
 
     public void setVue(int vue) {
         this.vue = vue;
+    }
+
+    public societe(String names) {
+        this.names = names;
     }
 
     @Override

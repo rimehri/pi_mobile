@@ -34,7 +34,7 @@ public class ServiceFournisseur {
     public boolean resultOK;
     private ConnectionRequest req;
 
-    private ServiceFournisseur() {
+    public ServiceFournisseur() {
          req = new ConnectionRequest();
     }
 
@@ -60,7 +60,7 @@ public class ServiceFournisseur {
              
                 float id = Float.parseFloat(obj.get("ids").toString());
                 t.setIds((int)id);
-                t.setVue(((int)Float.parseFloat(obj.get("vue").toString())));
+           //     t.setVue(((int)Float.parseFloat(obj.get("vue").toString())));
                          t.setNames(obj.get("names").toString());
                             
 
@@ -72,13 +72,18 @@ public class ServiceFournisseur {
                             
                 /*  Map<String, Object> produi = (Map<String, Object>) obj.get("categorie");
                   CategorieF pk = new CategorieF();
-                   String s = obj.get("nom categorie").toString();
-                   pk.setNomC(s);
-                   
-                    CategorieF p = new CategorieF(s);
+                  float idf = Float.parseFloat(obj.get("idf").toString());
+                 String s = produi.get("nomC").toString();
+               
+               
+                 
+                  pk.setIdf((int)idf);
+                  pk.setNomC(s);
+                 t.setCategorie(pk);
+                 //   CategorieF p = new CategorieF(();
                     
                    
-                   t.setCategorie(p);*/
+                  t.setCategorie(pk);*/
                             //  Map<String, Object> categorie = (Map<String, Object>) obj.get("categorie");
                            //   CategorieF c = new CategorieF();
                // float idUsr = Float.parseFloat(user.get("id").toString());
@@ -106,7 +111,7 @@ public class ServiceFournisseur {
     }
     
     public ArrayList<societe> getAllTasks(){
-        String url = "http://localhost/FINAL symfony/final/web/app_dev.php/societe";
+        String url = "http://localhost/FINAL%20symfony/final/web/app_dev.php/societe/indexA";
         req.setUrl(url);
         req.setPost(false);
         req.addResponseListener(new ActionListener<NetworkEvent>() {
@@ -122,5 +127,15 @@ public class ServiceFournisseur {
         });
         NetworkManager.getInstance().addToQueueAndWait(req);
         return tasks;
+    }
+     public void Detailf(int id) {
+        ConnectionRequest con = new ConnectionRequest();
+        String Url = "http://localhost/FINAL%20symfony/final/web/app_dev.php/societe/showa";
+        con.setUrl(Url);
+        con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+            System.out.println(str);
+        });
+        NetworkManager.getInstance().addToQueueAndWait(con);
     }
 }
